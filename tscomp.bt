@@ -1,0 +1,38 @@
+//------------------------------------------------
+//--- 010 Editor v12.0.1 Binary Template
+//
+//      File: tscomp.bt
+//   Authors: sourcekris
+//   Version: 1.0
+//   Purpose: Parsing TSComp Archives.
+//  Category: Archive
+// File Mask: *.TSC
+//  ID Bytes: 65 5D 13 8C 08 01.
+//   History: 
+//------------------------------------------------
+
+struct TSC_HEADER {
+    uchar fileID[6];
+    uchar uknown[7];
+};
+
+struct TSC_ENTRY {
+    uchar version;
+    int entryLen;
+    uchar unknown[10];
+    uchar fnLength;
+    string filename;
+};
+
+typedef struct (int offset, int len)
+{
+    UCHAR Data[len];
+} TSC_ENTRY_DATA;
+
+
+TSC_HEADER header;
+
+while (!FEof()) {
+    TSC_ENTRY entry;
+    TSC_ENTRY_DATA entry_data(FTell(), entry.entryLen);
+}
