@@ -74,7 +74,7 @@ func main() {
 	errpanic(err)
 
 	if !reflect.DeepEqual(h.id, fileID) {
-		fmt.Fprintf(os.Stderr, "file is not a %s file: %v", ext, err)
+		fmt.Fprintf(os.Stderr, "file is not a %s file", ext)
 		os.Exit(1)
 	}
 
@@ -104,6 +104,7 @@ func main() {
 		fmt.Printf("Extracting: %s (%d compressed bytes)\n", h.fn, h.cSize)
 
 		_, err = f.Seek(1, io.SeekCurrent) // Seek passed the null string terminator.
+		errpanic(err)
 		// Read all the DCL compressed data.
 		dcl := make([]byte, h.cSize)
 		_, err = f.Read(dcl)

@@ -21,7 +21,7 @@ Extract TSComp files.
 optional arguments:
   -h, --help            show this help message and exit
   -e FILENAME, --extract FILENAME
-                        The NSK file to extract.
+                        The TSC file to extract.
   -d PATH, --destination PATH
                         An optional output folder.
 
@@ -33,6 +33,7 @@ Reverse engineering of the format I found:
 
 - 6 byte file signature: "\x65\x5D\x13\x8C\x08\x01"
 - 8 bytes unknown
+- Entry header: "\x12"
 - 4 byte integer - Compressed data size
 - 10 bytes unknown
 - 1 byte filename length
